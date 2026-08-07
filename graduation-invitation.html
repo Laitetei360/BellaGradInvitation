@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bella Ofwa - Graduation Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  @font-face{
+  font-family:'Playlist Script';
+  src:url('PlaylistScript.otf') format('opentype');
+  font-weight:normal;
+  font-style:normal;
+  font-display:swap;
+}
+</style>
+<style>
+  :root{
+    --brown-bg:#C2AF93;
+    --brown-white:#F6EFE0;
+    --brown-gold:#B4853B;
+    --brown-mid:#724D30;
+    --brown-deep:#4A2F26;
+    --brown-dark:#2B1A12;
+    --brown-soft:#724D30;
+    --gold-shine:#F0D9A0;
+  }
+  *{box-sizing:border-box;}
+  .gold-text{
+    background:linear-gradient(100deg, var(--brown-mid) 0%, var(--brown-gold) 30%, var(--gold-shine) 50%, var(--brown-gold) 70%, var(--brown-mid) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+  }
+  html,body{margin:0;padding:0;height:100%;}
+  body{
+    min-height:100dvh;
+    width:100%;
+    background:var(--brown-bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px 12px;
+    font-family:'Cormorant Garamond', serif;
+    overflow-x:hidden;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .wrap{
+    width:100%;
+    max-width:460px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow-top{
+    color:var(--brown-deep);
+    letter-spacing:0.35em;
+    font-size:11px;
+    text-transform:uppercase;
+    opacity:0.75;
+  }
+  .scene{
+    perspective:2400px;
+    -webkit-perspective:2400px;
+    width:min(94vw,420px);
+    margin:0 auto;
+    touch-action:pan-y;
+  }
+  .book{
+    position:relative;
+    width:100%;
+    aspect-ratio:3/4.35;
+    max-height:76dvh;
+    margin:0 auto;
+    filter:drop-shadow(0 25px 40px rgba(74,47,38,0.35));
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+  }
+  .spine{
+    position:absolute;
+    left:-6px; top:2%; bottom:2%;
+    width:14px;
+    background:linear-gradient(90deg,var(--brown-deep),var(--brown-gold) 60%, transparent);
+    border-radius:6px 0 0 6px;
+    z-index:5;
+  }
+  .leaf{
+    position:absolute;
+    inset:0;
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+    transition:transform 0.9s cubic-bezier(.645,.045,.355,1);
+    -webkit-transition:-webkit-transform 0.9s cubic-bezier(.645,.045,.355,1);
+    transform-origin:left center;
+    -webkit-transform-origin:left center;
+    cursor:pointer;
+    will-change:transform;
+  }
+  .leaf.flipped{ transform:rotateY(-178deg); -webkit-transform:rotateY(-178deg); }
+  .leaf.flipped .face:not(.back){ pointer-events:none; }
+  .face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    border-radius:3px 10px 10px 3px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    padding:clamp(14px,3.6vw,30px) clamp(12px,3.6vw,26px);
+    text-align:center;
+  }
+  .face.back{ transform:rotateY(180deg); -webkit-transform:rotateY(180deg); }
+  .face::after{
+    content:"";
+    position:absolute;
+    top:0; left:0; bottom:0;
+    width:26px;
+    background:linear-gradient(90deg, rgba(74,47,38,0.14), transparent);
+    pointer-events:none;
+  }
+  .face-cover{
+    background:linear-gradient(165deg,var(--brown-white) 0%, var(--brown-white) 55%, var(--brown-white) 100%);
+    color:var(--brown-dark);
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+  }
+  .face-paper{
+    background:linear-gradient(170deg,var(--brown-white) 0%, var(--brown-white) 100%);
+    color:var(--brown-dark);
+    justify-content:center;
+    align-items:center;
+    gap:6px;
+  }
+  .face-paper-alt{
+    background:linear-gradient(170deg,var(--brown-white) 0%, var(--brown-white) 100%);
+  }
+  .face-blank{
+    background:linear-gradient(170deg,var(--brown-white) 0%, var(--brown-white) 100%);
+  }
+  .bow{ width:56px; height:auto; margin-top:4px; }
+  .photo-frame{
+    width:clamp(140px,42vw,190px);
+    aspect-ratio:1/1;
+    flex-shrink:0;
+    border-radius:0;
+    border:2px solid var(--brown-gold);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    color:var(--brown-soft);
+    font-size:10px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-align:center;
+    line-height:1.3;
+    margin:0 auto 8px;
+    background:rgba(255,255,255,0.4);
+    box-shadow:0 6px 18px rgba(74,47,38,0.25);
+  }
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+  }
+  .cover-eyebrow{
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    font-size:10px;
+    color:var(--brown-mid);
+  }
+  .cover-script{
+    font-family:'Playlist Script', cursive;
+    font-size:clamp(28px,8vw,38px);
+    line-height:1.5;
+    padding:0.15em 0.1em;
+    margin:6px 0 0;
+    overflow:visible;
+  }
+  .cover-name{
+    font-weight:600;
+    font-size:clamp(16px,4.8vw,20px);
+    letter-spacing:0.04em;
+    margin:2px 0 0;
+    text-transform:uppercase;
+  }
+  .cover-sub{
+    font-style:italic;
+    font-size:clamp(11px,3.2vw,13px);
+    color:var(--brown-soft);
+    margin:0;
+  }
+  .sparkle-divider{
+    color:var(--brown-gold);
+    font-size:11px;
+    letter-spacing:8px;
+    margin-top:2px;
+  }
+  .cover-hint{
+    position:absolute;
+    bottom:10px;
+    left:0; right:0;
+    text-align:center;
+    font-size:9px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--brown-soft);
+    opacity:0.7;
+  }
+  .page-eyebrow{
+    font-size:11px;
+    letter-spacing:0.26em;
+    text-transform:uppercase;
+    color:var(--brown-gold);
+  }
+  .page-title{
+    font-family:'Playlist Script', cursive;
+    font-size:clamp(27px,7.8vw,34px);
+    line-height:1.5;
+    padding:0.15em 0.1em;
+    margin:0;
+  }
+  .page-rule{
+    color:var(--brown-gold);
+    font-size:11px;
+    letter-spacing:5px;
+    margin:1px 0 6px;
+  }
+  .page-line{ font-size:clamp(14px,3.9vw,16.5px); margin:1px 0; color:var(--brown-dark); }
+  .page-line b{ font-weight:600; }
+  .page-sub{
+    font-size:clamp(12px,3.4vw,14px);
+    color:var(--brown-soft);
+    margin-top:1px;
+  }
+  .page-block{ margin-bottom:8px; }
+  .page-note{
+    font-style:italic;
+    font-size:clamp(12px,3.4vw,14.5px);
+    color:var(--brown-soft);
+    margin-top:6px;
+    line-height:1.4;
+  }
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    margin-top:4px;
+  }
+  .contact-links a{
+    color:var(--brown-mid);
+    text-decoration:none;
+    font-size:clamp(13px,3.6vw,15px);
+    border-bottom:1px solid var(--brown-gold);
+    padding-bottom:1px;
+  }
+  .closing-name{
+    font-family:'Playlist Script', cursive;
+    font-size:clamp(30px,8.2vw,50px);
+    line-height:1.5;
+    padding:0.15em 0.1em;
+    margin-top:4px;
+  }
+  .controls{
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+  .arrow-btn{
+    width:42px;height:42px;
+    border-radius:50%;
+    border:1.5px solid var(--brown-deep);
+    background:rgba(255,255,255,0.35);
+    color:var(--brown-deep);
+    font-size:18px;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background 0.2s, opacity 0.2s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .arrow-btn:hover{ background:rgba(74,47,38,0.18); }
+  .arrow-btn:disabled{ opacity:0.35; cursor:default; background:rgba(255,255,255,0.2); }
+  .dots{ display:flex; gap:6px; flex-wrap:wrap; justify-content:center; max-width:160px; }
+  .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(180,133,59,0.3);
+    transition:background 0.2s, transform 0.2s;
+  }
+  .dot.active{ background:var(--brown-mid); transform:scale(1.3); }
+  .swipe-hint{
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--brown-deep);
+    opacity:0.85;
+  }
+  .rsvp-form{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    margin-top:6px;
+    text-align:left;
+  }
+  .rsvp-form label.field{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brown-mid);
+  }
+  .rsvp-form input[type="text"],
+  .rsvp-form input[type="tel"],
+  .rsvp-form input[type="number"]{
+    font-family:'Cormorant Garamond', serif;
+    font-size:15px;
+    color:var(--brown-dark);
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--brown-gold);
+    padding:3px 2px;
+    outline:none;
+    text-transform:none;
+    letter-spacing:normal;
+  }
+  .rsvp-form input::placeholder{
+    font-style:italic;
+    font-size:13px;
+    color:var(--brown-soft);
+    opacity:0.55;
+  }
+  .rsvp-form fieldset{
+    border:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .rsvp-form legend{
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brown-mid);
+    padding:0;
+    margin-bottom:2px;
+  }
+  .radio-row{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .radio-pill{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    border:1px solid var(--brown-gold);
+    border-radius:999px;
+    padding:4px 10px;
+    font-size:12.5px;
+    color:var(--brown-dark);
+    cursor:pointer;
+  }
+  .radio-pill input{
+    accent-color:var(--brown-mid);
+    margin:0;
+  }
+  .rsvp-submit{
+    margin-top:4px;
+    align-self:center;
+    background:var(--brown-mid);
+    color:var(--brown-white);
+    border:none;
+    border-radius:999px;
+    padding:8px 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:14px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .rsvp-submit:hover{ background:var(--brown-deep); }
+  .form-status{
+    text-align:center;
+    font-size:12px;
+    font-style:italic;
+    color:var(--brown-soft);
+    min-height:16px;
+    margin-top:4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="eyebrow-top">You're invited</div>
+
+  <div class="scene" id="scene">
+    <div class="book" id="book">
+      <div class="spine"></div>
+
+      <div class="leaf" id="leaf5" style="z-index:101;">
+        <div class="face face-paper">
+          <span class="page-eyebrow">With gratitude</span>
+          <div class="page-title gold-text">thank you</div>
+          <div class="page-rule">✦ ✦ ✦</div>
+          <p class="page-note">This degree has a hundred names attached to it that aren't mine. Thank you for being part of my story.</p>
+          <div class="closing-name gold-text">-Bella  Ofwa</div>
+          <div class="page-note" style="margin-top:10px;">For any inquiries, feel free to message or call.</div>
+          <div class="contact-links">
+            <a href="https://wa.me/254797493308" target="_blank" rel="noopener">Message on WhatsApp</a>
+            <a href="tel:+254797493308">Call 0797 493 308</a>
+          </div>
+        </div>
+        <div class="face face-blank back"></div>
+      </div>
+
+      <div class="leaf" id="leaf4" style="z-index:102;">
+        <div class="face face-paper">
+          <span class="page-eyebrow">Kindly respond</span>
+          <div class="page-title gold-text">rsvp</div>
+          <div class="page-rule">✦ ✦ ✦</div>
+          <div class="page-line">Kindly confirm your attendance by <b>Saturday, 15th August, 2026</b></div>
+          <form class="rsvp-form" id="rsvpForm">
+            <label class="field">Name
+              <input type="text" name="name" required>
+            </label>
+            <label class="field">Phone Number
+              <input type="tel" name="contact" placeholder="phone number" required>
+            </label>
+            <fieldset>
+              <legend>Will you be in attendance?</legend>
+              <div class="radio-row">
+                <label class="radio-pill"><input type="radio" name="attendance" value="Yes" required> Yes</label>
+                <label class="radio-pill"><input type="radio" name="attendance" value="No"> No</label>
+                <label class="radio-pill"><input type="radio" name="attendance" value="Not sure yet"> Not sure</label>
+              </div>
+            </fieldset>
+            <label class="field">Pax (including you)
+              <input type="number" name="pax" min="1" value="1">
+            </label>
+            <button type="submit" class="rsvp-submit">Send RSVP</button>
+          </form>
+          <div class="form-status" id="formStatus"></div>
+        </div>
+        <div class="face face-blank face-paper-alt back"></div>
+      </div>
+
+      <div class="leaf" id="leaf3" style="z-index:103;">
+        <div class="face face-paper">
+          <span class="page-eyebrow">The celebration</span>
+          <div class="page-title gold-text">graduation party</div>
+          <div class="page-rule">✦ ✦ ✦</div>
+          <div class="page-block">
+            <div class="page-line"><b>Saturday, 22nd August, 2026</b></div>
+            <div class="page-sub">FROM 12:00PM</div>
+          </div>
+          <div class="page-block">
+            <div class="page-line">Public Service Club</div>
+            <div class="page-sub">UPPERHILL</div>
+          </div>
+          <div class="page-note">Join us for thanksgiving, food, music and celebrating together.</div>
+        </div>
+        <div class="face face-blank face-paper-alt back"></div>
+      </div>
+
+      <div class="leaf" id="leaf2" style="z-index:104;">
+        <div class="face face-paper">
+          <span class="page-eyebrow">The ceremony</span>
+          <div class="page-title gold-text">she graduated on...</div>
+          <div class="page-rule">✦ ✦ ✦</div>
+          <div class="page-block">
+            <div class="page-line"><b>Friday, 14th August, 2026</b></div>
+          </div>
+          <div class="page-block">
+            <div class="page-line">Jomo Kenyatta University of Agriculture &amp; Technology</div>
+            <div class="page-sub">Main Campus, Juja</div>
+          </div>
+          <div class="page-note">The journey that began on <b>Monday, 9th September 2019</b> came to an end on <b>Monday, 9th February, 2026</b>.</div>
+        </div>
+        <div class="face face-blank back"></div>
+      </div>
+
+      <div class="leaf" id="leaf1" style="z-index:105;">
+        <div class="face face-cover">
+          <div class="cover-eyebrow">Save the date</div>
+          <div class="photo-frame">
+            <img src="DSC09167.jpg" alt="Bella Ofwa graduation photo">
+          </div>
+          <div class="cover-script gold-text">she did it!</div>
+          <div class="cover-name">Bella Ofwa</div>
+          <div class="cover-sub">is graduating with a Bachelor of Architecture (BArch)</div>
+          <div class="sparkle-divider">✦</div>
+        </div>
+        <div class="face face-blank back"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="arrow-btn" id="prevBtn" aria-label="Previous page">&#8249;</button>
+    <div class="dots" id="dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <button class="arrow-btn" id="nextBtn" aria-label="Next page">&#8250;</button>
+  </div>
+  <div class="swipe-hint">swipe, tap, or use the arrows</div>
+</div>
+
+<script>
+  const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwfQA5itkcdQyDq4X27J44dhWAVtpv0JFQglRghQpN_0kMBdBsGuVIYTKCxByxWx3K6/exec';
+
+  const leaves = [
+    document.getElementById('leaf1'),
+    document.getElementById('leaf2'),
+    document.getElementById('leaf3'),
+    document.getElementById('leaf4'),
+    document.getElementById('leaf5')
+  ];
+  const dots = document.querySelectorAll('.dot');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const scene = document.getElementById('scene');
+  let flipped = 0;
+  let animTimer = null;
+
+  function applyZ(activeIndex){
+    leaves.forEach((leaf, i) => {
+      const isFlipped = i < flipped;
+      leaf.classList.toggle('flipped', isFlipped);
+      if (i === activeIndex){
+        leaf.style.zIndex = 200;
+      } else {
+        leaf.style.zIndex = isFlipped ? (100 + i) : (100 + (leaves.length - i));
+      }
+    });
+  }
+
+  function updateControls(){
+    dots.forEach((d, i) => d.classList.toggle('active', i === flipped));
+    prevBtn.disabled = flipped === 0;
+    nextBtn.disabled = flipped === leaves.length;
+  }
+
+  function settle(){
+    applyZ(-1);
+  }
+
+  function next(){
+    if (flipped < leaves.length){
+      const activeIndex = flipped;
+      flipped++;
+      applyZ(activeIndex);
+      updateControls();
+      clearTimeout(animTimer);
+      animTimer = setTimeout(settle, 920);
+    }
+  }
+  function prev(){
+    if (flipped > 0){
+      flipped--;
+      const activeIndex = flipped;
+      applyZ(activeIndex);
+      updateControls();
+      clearTimeout(animTimer);
+      animTimer = setTimeout(settle, 920);
+    }
+  }
+
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  leaves.forEach(leaf => leaf.addEventListener('click', (e) => {
+    if (e.target.closest('a, form, input, button, label, select, textarea, fieldset')) return;
+    next();
+  }));
+
+  let touchStartX = 0, touchStartY = 0;
+  scene.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, {passive:true});
+  scene.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const dy = e.changedTouches[0].screenY - touchStartY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){
+      if (dx < 0) next(); else prev();
+    }
+  }, {passive:true});
+
+  const rsvpForm = document.getElementById('rsvpForm');
+  const formStatus = document.getElementById('formStatus');
+  rsvpForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (RSVP_ENDPOINT.indexOf('PASTE_YOUR') === 0) {
+      formStatus.textContent = 'RSVP endpoint not set up yet.';
+      return;
+    }
+    formStatus.textContent = 'Sending…';
+    const data = new URLSearchParams(new FormData(rsvpForm));
+    fetch(RSVP_ENDPOINT, { method: 'POST', mode: 'no-cors', body: data })
+      .then(() => {
+        formStatus.textContent = 'Thank you! Your RSVP has been received.';
+        rsvpForm.reset();
+      })
+      .catch(() => {
+        formStatus.textContent = 'Something went wrong — please try WhatsApp or Call instead.';
+      });
+  });
+
+  settle();
+  updateControls();
+</script>
+
+</body>
+</html>
