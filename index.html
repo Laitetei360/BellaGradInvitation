@@ -146,25 +146,7 @@
     background:linear-gradient(170deg,var(--brown-white) 0%, var(--brown-white) 100%);
   }
   .bow{ width:56px; height:auto; margin-top:4px; }
-  .photo-frame{
-    width:clamp(150px,50vw,210px);
-    aspect-ratio:3/4;
-    height:auto;
-    flex-shrink:0;
-    border-radius:0;
-    border:2px solid var(--brown-gold);
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-    color:var(--brown-soft);
-    font-size:10px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    text-align:center;
-    line-height:1.3;
-    margin:0 0 8px;
-    background:rgba(255,255,255,0.4);
-    box-shadow:0 6px 18px rgba(74,47,38,0.25);
-  }
+  .photo-frame{width:120px;height:120px;border-radius:0;overflow:hidden;margin:10px auto 18px;border:2px solid rgba(255,255,255,.9);box-shadow:0 8px 20px rgba(0,0,0,.12);background:#fff;}.photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
   .photo-frame img{
     width:100%;height:100%;object-fit:cover;display:block;
   }
@@ -492,7 +474,7 @@
         <div class="face face-cover">
           <div class="cover-eyebrow">Save the date</div>
           <div class="photo-frame">
-            <!-- replace src below with your photo, e.g. src="me.jpg" -->
+            <src="DSC09167.jpg">
             <span>your<br>photo</span>
           </div>
           <div class="cover-script gold-text">she did it!</div>
