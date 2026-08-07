@@ -147,9 +147,10 @@
   }
   .bow{ width:56px; height:auto; margin-top:4px; }
   .photo-frame{
-    width:clamp(120px,42vw,168px);
-    height:clamp(120px,42vw,168px);
-    border-radius:50%;
+    width:clamp(135px,50vw,190px);
+    aspect-ratio:3/4;
+    height:auto;
+    border-radius:6px;
     border:2px solid var(--brown-gold);
     display:flex;align-items:center;justify-content:center;
     overflow:hidden;
@@ -277,7 +278,7 @@
   }
   .arrow-btn:hover{ background:rgba(192,110,142,0.15); }
   .arrow-btn:disabled{ opacity:0.3; cursor:default; background:transparent; }
-  .dots{ display:flex; gap:6px; flex-wrap:wrap; justify-content:center; max-width:140px; }
+  .dots{ display:flex; gap:6px; flex-wrap:wrap; justify-content:center; max-width:160px; }
   .dot{
     width:6px;height:6px;border-radius:50%;
     background:rgba(180,133,59,0.3);
@@ -290,6 +291,95 @@
     text-transform:uppercase;
     color:rgba(180,133,59,0.6);
   }
+  .rsvp-form{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    margin-top:6px;
+    text-align:left;
+  }
+  .rsvp-form label.field{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brown-mid);
+  }
+  .rsvp-form input[type="text"],
+  .rsvp-form input[type="number"]{
+    font-family:'Cormorant Garamond', serif;
+    font-size:15px;
+    color:var(--brown-dark);
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--brown-gold);
+    padding:3px 2px;
+    outline:none;
+    text-transform:none;
+    letter-spacing:normal;
+  }
+  .rsvp-form fieldset{
+    border:none;
+    padding:0;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .rsvp-form legend{
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--brown-mid);
+    padding:0;
+    margin-bottom:2px;
+  }
+  .radio-row{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .radio-pill{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    border:1px solid var(--brown-gold);
+    border-radius:999px;
+    padding:4px 10px;
+    font-size:12.5px;
+    color:var(--brown-dark);
+    cursor:pointer;
+  }
+  .radio-pill input{
+    accent-color:var(--brown-mid);
+    margin:0;
+  }
+  .rsvp-submit{
+    margin-top:4px;
+    align-self:center;
+    background:var(--brown-mid);
+    color:var(--brown-white);
+    border:none;
+    border-radius:999px;
+    padding:8px 26px;
+    font-family:'Cormorant Garamond', serif;
+    font-size:14px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    cursor:pointer;
+  }
+  .rsvp-submit:hover{ background:var(--brown-deep); }
+  .form-status{
+    text-align:center;
+    font-size:12px;
+    font-style:italic;
+    color:var(--brown-soft);
+    min-height:16px;
+    margin-top:4px;
+  }
 </style>
 </head>
 <body>
@@ -301,33 +391,54 @@
     <div class="book" id="book">
       <div class="spine"></div>
 
-      <div class="leaf" id="leaf5" style="z-index:100;">
+      <div class="leaf" id="leaf5" style="z-index:101;">
         <div class="face face-paper">
           <span class="page-eyebrow">With gratitude</span>
           <div class="page-title gold-text">thank you</div>
           <div class="page-rule">✦ ✦ ✦</div>
           <p class="page-note">This degree has a hundred names attached to it that aren't mine. Thank you for being part of my story.</p>
           <div class="closing-name gold-text">-Bella  Ofwa</div>
-        </div>
-        <div class="face face-blank back"></div>
-      </div>
-
-      <div class="leaf" id="leaf4" style="z-index:101;">
-        <div class="face face-paper">
-          <span class="page-eyebrow">Kindly respond</span>
-          <div class="page-title gold-text">rsvp</div>
-          <div class="page-rule">✦ ✦ ✦</div>
-          <div class="page-line">For planning purposes, kindly confirm your attendance with me by <b>Wednesday, 19th August, 2026</b></div>
+          <div class="page-note" style="margin-top:10px;">For any inquiries, feel free to message or call.</div>
           <div class="contact-links">
             <a href="https://wa.me/254797493308" target="_blank" rel="noopener">Message on WhatsApp</a>
             <a href="tel:+254797493308">Call 0797 493 308</a>
           </div>
-          <div class="page-note">This chapter closes better with you in the room.</div>
+        </div>
+        <div class="face face-blank back"></div>
+      </div>
+
+      <div class="leaf" id="leaf4" style="z-index:102;">
+        <div class="face face-paper">
+          <span class="page-eyebrow">Kindly respond</span>
+          <div class="page-title gold-text">rsvp</div>
+          <div class="page-rule">✦ ✦ ✦</div>
+          <div class="page-line">Kindly confirm your attendance by <b>Wednesday, 19th August, 2026</b></div>
+          <form class="rsvp-form" id="rsvpForm">
+            <label class="field">Name
+              <input type="text" name="name" required>
+            </label>
+            <label class="field">Contact
+              <input type="text" name="contact" placeholder="phone or email" required>
+            </label>
+            <fieldset>
+              <legend>Will you be in attendance?</legend>
+              <div class="radio-row">
+                <label class="radio-pill"><input type="radio" name="attendance" value="Yes" required> Yes</label>
+                <label class="radio-pill"><input type="radio" name="attendance" value="No"> No</label>
+                <label class="radio-pill"><input type="radio" name="attendance" value="Not sure yet"> Not sure</label>
+              </div>
+            </fieldset>
+            <label class="field">Pax (including you)
+              <input type="number" name="pax" min="1" value="1">
+            </label>
+            <button type="submit" class="rsvp-submit">Send RSVP</button>
+          </form>
+          <div class="form-status" id="formStatus"></div>
         </div>
         <div class="face face-blank face-paper-alt back"></div>
       </div>
 
-      <div class="leaf" id="leaf3" style="z-index:102;">
+      <div class="leaf" id="leaf3" style="z-index:103;">
         <div class="face face-paper">
           <span class="page-eyebrow">The celebration</span>
           <div class="page-title gold-text">graduation party</div>
@@ -342,10 +453,10 @@
           </div>
           <div class="page-note">Join us for thanksgiving, food, music and celebrating together.</div>
         </div>
-        <div class="face face-blank back"></div>
+        <div class="face face-blank face-paper-alt back"></div>
       </div>
 
-      <div class="leaf" id="leaf2" style="z-index:103;">
+      <div class="leaf" id="leaf2" style="z-index:104;">
         <div class="face face-paper">
           <span class="page-eyebrow">The ceremony</span>
           <div class="page-title gold-text">she graduated on...</div>
@@ -359,10 +470,10 @@
           </div>
           <div class="page-note">The journey that began on <b>Monday, 9th September 2019</b> came to an end on <b>Monday, 9th February, 2026</b>.</div>
         </div>
-        <div class="face face-blank face-paper-alt back"></div>
+        <div class="face face-blank back"></div>
       </div>
 
-      <div class="leaf" id="leaf1" style="z-index:104;">
+      <div class="leaf" id="leaf1" style="z-index:105;">
         <div class="face face-cover">
           <div class="cover-eyebrow">Save the date</div>
           <div class="photo-frame">
@@ -396,6 +507,8 @@
 </div>
 
 <script>
+  const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwfQA5itkcdQyDq4X27J44dhWAVtpv0JFQglRghQpN_0kMBdBsGuVIYTKCxByxWx3K6/exec';
+
   const leaves = [
     document.getElementById('leaf1'),
     document.getElementById('leaf2'),
@@ -456,7 +569,7 @@
   nextBtn.addEventListener('click', next);
   prevBtn.addEventListener('click', prev);
   leaves.forEach(leaf => leaf.addEventListener('click', (e) => {
-    if (e.target.closest('a')) return;
+    if (e.target.closest('a, form, input, button, label, select, textarea, fieldset')) return;
     next();
   }));
 
@@ -472,6 +585,26 @@
       if (dx < 0) next(); else prev();
     }
   }, {passive:true});
+
+  const rsvpForm = document.getElementById('rsvpForm');
+  const formStatus = document.getElementById('formStatus');
+  rsvpForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (RSVP_ENDPOINT.indexOf('PASTE_YOUR') === 0) {
+      formStatus.textContent = 'RSVP endpoint not set up yet.';
+      return;
+    }
+    formStatus.textContent = 'Sending…';
+    const data = new URLSearchParams(new FormData(rsvpForm));
+    fetch(RSVP_ENDPOINT, { method: 'POST', mode: 'no-cors', body: data })
+      .then(() => {
+        formStatus.textContent = 'Thank you! Your RSVP has been received.';
+        rsvpForm.reset();
+      })
+      .catch(() => {
+        formStatus.textContent = 'Something went wrong — please try WhatsApp or Call instead.';
+      });
+  });
 
   settle();
   updateControls();
