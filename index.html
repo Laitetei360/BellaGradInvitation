@@ -268,17 +268,17 @@
   .arrow-btn{
     width:42px;height:42px;
     border-radius:50%;
-    border:1px solid var(--brown-gold);
-    background:transparent;
-    color:var(--brown-mid);
+    border:1.5px solid var(--brown-deep);
+    background:rgba(255,255,255,0.35);
+    color:var(--brown-deep);
     font-size:18px;
     cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     transition:background 0.2s, opacity 0.2s;
     -webkit-tap-highlight-color:transparent;
   }
-  .arrow-btn:hover{ background:rgba(192,110,142,0.15); }
-  .arrow-btn:disabled{ opacity:0.3; cursor:default; background:transparent; }
+  .arrow-btn:hover{ background:rgba(74,47,38,0.18); }
+  .arrow-btn:disabled{ opacity:0.35; cursor:default; background:rgba(255,255,255,0.2); }
   .dots{ display:flex; gap:6px; flex-wrap:wrap; justify-content:center; max-width:160px; }
   .dot{
     width:6px;height:6px;border-radius:50%;
@@ -290,7 +290,8 @@
     font-size:10px;
     letter-spacing:0.1em;
     text-transform:uppercase;
-    color:rgba(180,133,59,0.6);
+    color:var(--brown-deep);
+    opacity:0.85;
   }
   .rsvp-form{
     width:100%;
