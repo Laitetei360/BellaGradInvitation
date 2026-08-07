@@ -151,7 +151,7 @@
     aspect-ratio:3/4;
     height:auto;
     flex-shrink:0;
-    border-radius:6px;
+    border-radius:0;
     border:2px solid var(--brown-gold);
     display:flex;align-items:center;justify-content:center;
     overflow:hidden;
@@ -177,8 +177,10 @@
   .cover-script{
     font-family:'Playlist Script', cursive;
     font-size:clamp(28px,8vw,38px);
-    line-height:1;
+    line-height:1.5;
+    padding:0.15em 0.1em;
     margin:6px 0 0;
+    overflow:visible;
   }
   .cover-name{
     font-weight:600;
@@ -219,6 +221,8 @@
   .page-title{
     font-family:'Playlist Script', cursive;
     font-size:clamp(27px,7.8vw,34px);
+    line-height:1.5;
+    padding:0.15em 0.1em;
     margin:0;
   }
   .page-rule{
@@ -257,7 +261,9 @@
   }
   .closing-name{
     font-family:'Playlist Script', cursive;
-    font-size:clamp(21px,5.8vw,26px);
+    font-size:clamp(30px,8.2vw,38px);
+    line-height:1.5;
+    padding:0.15em 0.1em;
     margin-top:4px;
   }
   .controls{
@@ -311,6 +317,7 @@
     color:var(--brown-mid);
   }
   .rsvp-form input[type="text"],
+  .rsvp-form input[type="tel"],
   .rsvp-form input[type="number"]{
     font-family:'Cormorant Garamond', serif;
     font-size:15px;
@@ -322,6 +329,12 @@
     outline:none;
     text-transform:none;
     letter-spacing:normal;
+  }
+  .rsvp-form input::placeholder{
+    font-style:italic;
+    font-size:13px;
+    color:var(--brown-soft);
+    opacity:0.55;
   }
   .rsvp-form fieldset{
     border:none;
@@ -419,8 +432,8 @@
             <label class="field">Name
               <input type="text" name="name" required>
             </label>
-            <label class="field">Contact
-              <input type="text" name="contact" placeholder="phone or email" required>
+            <label class="field">Phone Number
+              <input type="tel" name="contact" placeholder="phone number" required>
             </label>
             <fieldset>
               <legend>Will you be in attendance?</legend>
